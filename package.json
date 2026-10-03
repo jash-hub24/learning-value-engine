@@ -1,0 +1,14 @@
+{
+  "name": "learning-value-engine",
+  "version": "1.0.0",
+  "description": "Learning Value Engine - Evidence-based competency and learning gain measurement system",
+  "scripts": {
+    "start": "npm --prefix backend start",
+    "build": "npm --prefix frontend run build && npm --prefix backend run build",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev"
+  },
+  "keywords": ["education", "competency", "learning-gain", "effort-efficiency", "analytics"],
+  "author": "",
+  "license": "ISC"
+}

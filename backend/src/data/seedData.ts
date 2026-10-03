@@ -1,0 +1,310 @@
+import {
+  Student,
+  Competency,
+  Evidence,
+  Assessment,
+  EffortRecord,
+  ScoringConfiguration
+} from '../types.js';
+
+export const initialStudent: Student = {
+  id: 'stud-rahul-01',
+  name: 'Rahul Sharma',
+  program: 'Computer Engineering',
+  semester: 4,
+  academicPerformance: 81, // 81%
+  assignmentCompletion: 94, // 94%
+  academicEffort: 42 // 42 hours
+};
+
+export const initialCompetencies: Competency[] = [
+  {
+    id: 'comp-java',
+    name: 'Java',
+    description: 'Object-Oriented Programming, Core Collections, Multithreading, and Exception Handling',
+    targetScore: 78
+  },
+  {
+    id: 'comp-sql',
+    name: 'SQL',
+    description: 'Relational Database Queries, Schema Design, Indexing, and Joins',
+    targetScore: 72
+  },
+  {
+    id: 'comp-prob-solving',
+    name: 'Problem Solving',
+    description: 'Algorithms, Data Structures, Complexity Analysis, and Logic',
+    targetScore: 64
+  },
+  {
+    id: 'comp-rest-api',
+    name: 'REST API Development',
+    description: 'HTTP Methods, API Design, Endpoints, Controller-Service Pattern, and Integration',
+    targetScore: 39
+  },
+  {
+    id: 'comp-testing',
+    name: 'Testing',
+    description: 'Unit Testing, Test-Driven Development, Mocking, and Integration Verification',
+    targetScore: 34
+  }
+];
+
+export const initialScoringConfiguration: ScoringConfiguration = {
+  id: 'config-default',
+  name: 'Standard Engineering Competency Weighting',
+  weights: {
+    practical: 40, // Practical Assessment: 40%
+    project: 30,   // Project Evidence: 30%
+    theory: 20,    // Concept/Theory Assessment: 20%
+    reflection: 10 // Reflection: 10%
+  },
+  description: 'Default deterministic configuration prioritizing practical and project execution over passive theory.',
+  updatedAt: new Date().toISOString()
+};
+
+export const initialEvidence: Evidence[] = [
+  // REST API Development Evidence (Must match Section 5 exactly)
+  {
+    id: 'ev-rest-theory',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    type: 'theory',
+    title: 'Theory Assessment',
+    score: 82, // 82%
+    date: '2026-09-14',
+    source: 'Midterm Written Examination',
+    relevance: 'High',
+    description: 'REST architecture principles, HTTP status codes, idempotency, and statelessness theory.'
+  },
+  {
+    id: 'ev-rest-coding',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    type: 'practical', // Grouped under practical hands-on category
+    title: 'Coding Assessment',
+    score: 51, // 51%
+    date: '2026-09-20',
+    source: 'Timed Coding Lab Platform',
+    relevance: 'High',
+    description: 'Implementing basic GET/POST endpoints under timed constraints; lacked validation handling.'
+  },
+  {
+    id: 'ev-rest-project',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    type: 'project',
+    title: 'Project Evidence',
+    score: 43, // 43%
+    date: '2026-09-25',
+    source: 'Course Milestone Submission',
+    relevance: 'High',
+    description: 'E-commerce API repository; incomplete controller-service separation and mock tests.'
+  },
+  {
+    id: 'ev-rest-practical',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    type: 'practical',
+    title: 'Practical Assessment',
+    score: 39, // 39%
+    date: '2026-09-28',
+    source: 'End-to-End API Integration Lab',
+    relevance: 'High',
+    description: 'Live deployment & Postman verification; experienced CORS, database connection, and payload formatting errors.'
+  },
+
+  // Java Competency Evidence (Calibrated to yield ~78%)
+  {
+    id: 'ev-java-practical',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-java',
+    type: 'practical',
+    title: 'Hands-on Java Lab Assessment',
+    score: 80,
+    date: '2026-09-10',
+    source: 'Compiler Lab Assessment',
+    relevance: 'High',
+    description: 'Java Collections Framework and multithreaded task queue implementation.'
+  },
+  {
+    id: 'ev-java-project',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-java',
+    type: 'project',
+    title: 'Core Java Banking System Project',
+    score: 76,
+    date: '2026-09-18',
+    source: 'Semester Lab Project',
+    relevance: 'High',
+    description: 'Clean OOP implementation with encapsulation and design patterns.'
+  },
+  {
+    id: 'ev-java-theory',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-java',
+    type: 'theory',
+    title: 'Java Theory & OOP Principles Quiz',
+    score: 77,
+    date: '2026-09-08',
+    source: 'Continuous Evaluation Quiz',
+    relevance: 'Medium',
+    description: 'Memory model, JVM garbage collection, and inheritance.'
+  },
+
+  // SQL Competency Evidence (Calibrated to yield ~72%)
+  {
+    id: 'ev-sql-practical',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-sql',
+    type: 'practical',
+    title: 'Database Query Benchmark Lab',
+    score: 73,
+    date: '2026-09-12',
+    source: 'SQL Sandbox Assessment',
+    relevance: 'High',
+    description: 'Complex multi-table INNER and LEFT JOINs with GROUP BY aggregations.'
+  },
+  {
+    id: 'ev-sql-project',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-sql',
+    type: 'project',
+    title: 'Schema Normalization Project',
+    score: 71,
+    date: '2026-09-22',
+    source: 'Course Mini-Project',
+    relevance: 'High',
+    description: '3NF relational schema design for an inventory management database.'
+  },
+  {
+    id: 'ev-sql-theory',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-sql',
+    type: 'theory',
+    title: 'Relational Theory & ACID Exam',
+    score: 71,
+    date: '2026-09-05',
+    source: 'Midterm Theory Test',
+    relevance: 'Medium',
+    description: 'Transaction isolation levels, ACID properties, and relational algebra.'
+  },
+
+  // Problem Solving Evidence (Calibrated to yield ~64%)
+  {
+    id: 'ev-prob-practical',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-prob-solving',
+    type: 'practical',
+    title: 'Data Structures Problem Set',
+    score: 65,
+    date: '2026-09-15',
+    source: 'HackerRank Classroom Contest',
+    relevance: 'High',
+    description: 'Binary trees, stacks, queues, and graph traversal.'
+  },
+  {
+    id: 'ev-prob-project',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-prob-solving',
+    type: 'project',
+    title: 'Algorithmic Optimization Case Study',
+    score: 63,
+    date: '2026-09-24',
+    source: 'Lab Assignment 3',
+    relevance: 'Medium',
+    description: 'Shortest path route planning using Dijkstra and dynamic programming.'
+  },
+  {
+    id: 'ev-prob-theory',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-prob-solving',
+    type: 'theory',
+    title: 'Asymptotic Analysis & Proofs',
+    score: 64,
+    date: '2026-09-02',
+    source: 'Theory Assessment 1',
+    relevance: 'Medium',
+    description: 'Big-O, Big-Omega, recurrence relations, and Master theorem.'
+  },
+
+  // Testing Competency Evidence (Calibrated to yield ~34%)
+  {
+    id: 'ev-test-practical',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-testing',
+    type: 'practical',
+    title: 'JUnit Unit Test Suite Lab',
+    score: 32,
+    date: '2026-09-26',
+    source: 'Automated Test Coverage Lab',
+    relevance: 'High',
+    description: 'Writing unit tests with boundary conditions; only achieved 28% branch coverage.'
+  },
+  {
+    id: 'ev-test-project',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-testing',
+    type: 'project',
+    title: 'Test Integration Milestone',
+    score: 35,
+    date: '2026-09-27',
+    source: 'Project Phase 2 Review',
+    relevance: 'High',
+    description: 'Integration test suite with Mockito; broken mocks and assertion errors.'
+  },
+  {
+    id: 'ev-test-theory',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-testing',
+    type: 'theory',
+    title: 'Software Testing Fundamentals Test',
+    score: 37,
+    date: '2026-09-07',
+    source: 'Classroom Evaluation',
+    relevance: 'Medium',
+    description: 'Black-box vs white-box testing, regression testing, and code coverage metrics.'
+  }
+];
+
+export const initialAssessments: Assessment[] = [
+  {
+    id: 'assess-backend-01',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    title: 'Backend Engineering Diagnostic Assessment',
+    preScore: 54, // Pre: 54%
+    postScore: 76, // Post: 76% (Measured Learning Gain: +22 percentage points)
+    date: '2026-09-29'
+  }
+];
+
+export const initialEffortRecords: EffortRecord[] = [
+  {
+    id: 'eff-1',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    category: 'Lecture & Slides Review',
+    hoursSpent: 18,
+    date: '2026-09-10',
+    description: 'Reviewed course slide decks and watched video lectures on REST principles.'
+  },
+  {
+    id: 'eff-2',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    category: 'Hands-on Coding Labs',
+    hoursSpent: 12,
+    date: '2026-09-18',
+    description: 'Configured local development environment and attempted controller endpoints.'
+  },
+  {
+    id: 'eff-3',
+    studentId: 'stud-rahul-01',
+    competencyId: 'comp-rest-api',
+    category: 'Project Debugging & Verification',
+    hoursSpent: 12,
+    date: '2026-09-25',
+    description: 'Troubleshooting Postman API requests and database schema migrations.'
+  }
+];
